@@ -61,4 +61,3 @@ def unlike(message_id, url=(base_url + "messages/"),group_id=group_id):
 # def read_before(n, before, url=(base_url + "GM API STUFF"))
 #     """Reads n messages before the specified time"""
 #     pass
-                ""
