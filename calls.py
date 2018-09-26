@@ -44,7 +44,7 @@ def read_messages(n, url=(base_url + "groups/"+ group_id +"/messages?")):
         %d" % json.loads(r.text)['meta']['code']
         raise NotReached(error_string)
 
-def like(message_id, url=(base_url + "/messages/"),group_id=group_id):
+def like(message_id, url=(base_url + "messages/"),group_id=group_id):
     """Likes message by message id Note: this is the user who will like the message and not the bot"""
     url = url + str(group_id) + '/' + str(message_id) + '/like?' + token
     r = requests.post(url)
