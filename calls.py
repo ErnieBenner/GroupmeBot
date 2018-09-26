@@ -21,7 +21,7 @@ def post_message(string, url="https://api.groupme.com/v3/bots/post", bot_id=bot_
     r = requests.post(url, data=data)
 
 def read_messages(n, url=(base_url + "groups/38611088/messages?")):
-    """Returns a list of the last n messages details as (string, sender, time)
+    """Returns a list of the last n messages details as (string, sender, time, message id)
     if request fails raise NotReached"""
 
     limit = "&limit=%d&" % n
@@ -43,6 +43,15 @@ def read_messages(n, url=(base_url + "groups/38611088/messages?")):
         %d" % json.loads(r.text)['meta']['code']
         raise NotReached(error_string)
 
-def like(id, url=""):
-    """Likes message by message id **unimplimented**"""
-    pass
+# def like(id, url=""):
+#     """Likes message by message id **unimplimented**"""
+#     pass
+
+# def read_since(n, since, url=(base_url + "what ever the gm api says")):
+#     """read's n messages since the given time"""
+#     pass
+
+# def read_before(n, before, url=(base_url + "GM API STUFF"))
+#     """Reads n messages before the specified time"""
+#     pass
+                ""
