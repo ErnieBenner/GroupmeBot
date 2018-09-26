@@ -45,9 +45,14 @@ def read_messages(n, url=(base_url + "groups/"+ group_id +"/messages?")):
         raise NotReached(error_string)
 
 def like(message_id, url=(base_url + "/messages/"),group_id=group_id):
-    """Likes message by message id"""
+    """Likes message by message id Note: this is the user who will like the message and not the bot"""
     url = url + str(group_id) + '/' + str(message_id) + '/like?' + token
     r = requests.post(url)
+    
+def unlike(message_id, url=(base_url + "messages/"),group_id=group_id):
+    """unlikes message by message id Note this will be the user performing the action and not the bot"""
+    url = url + str(group_id) + '/' + str(message_id) + '/unlike?' + token
+    r = requests.post(url)    
 
 # def read_since(n, since, url=(base_url + "what ever the gm api says")):
 #     """read's n messages since the given time"""
