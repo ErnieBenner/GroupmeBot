@@ -21,7 +21,7 @@ def post_message(string, url="https://api.groupme.com/v3/bots/post", bot_id=bot_
 
     r = requests.post(url, data=data)
 
-def read_messages(n, url=(base_url + "groups/38611088/messages?")):
+def read_messages(n, url=(base_url + "groups/"+ group_id +"/messages?")):
     """Returns a list of the last n messages details as (string, sender, time, message id)
     if request fails raise NotReached"""
 
