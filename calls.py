@@ -47,7 +47,7 @@ def read_messages(n, url=(base_url + "groups/38611088/messages?")):
 def like(message_id, url=(base_url + "/messages/"),group_id=group_id):
     """Likes message by message id"""
     url = url + str(group_id) + '/' + str(message_id) + '/like'
-    r = request.post(url)
+    r = requests.post(url)
 
 # def read_since(n, since, url=(base_url + "what ever the gm api says")):
 #     """read's n messages since the given time"""
