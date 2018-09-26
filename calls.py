@@ -5,6 +5,7 @@ import requests, json, os
 base_url = 'https://api.groupme.com/v3/'
 token = os.environ['GM_API_KEY']
 bot_id = os.environ['ROOMMATE_BOT_ID']
+group_id = os.environ['GROUP_ID']
 
 class NotReached(Exception):
     pass
@@ -43,9 +44,10 @@ def read_messages(n, url=(base_url + "groups/38611088/messages?")):
         %d" % json.loads(r.text)['meta']['code']
         raise NotReached(error_string)
 
-# def like(id, url=""):
-#     """Likes message by message id **unimplimented**"""
-#     pass
+def like(message_id, url=(base_url + "/messages/"),group_id=group_id):
+    """Likes message by message id"""
+    url = url + str(group_id) + '/' + str(message_id) + '/like'
+    r = request.post(url)
 
 # def read_since(n, since, url=(base_url + "what ever the gm api says")):
 #     """read's n messages since the given time"""
