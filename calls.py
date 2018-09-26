@@ -5,6 +5,7 @@ import requests, json, os
 base_url = 'https://api.groupme.com/v3/'
 token = os.environ['GM_API_KEY']
 bot_id = os.environ['ROOMMATE_BOT_ID']
+group_id = os.environ['GROUP_ID']
 
 class NotReached(Exception):
     pass
@@ -20,7 +21,7 @@ def post_message(string, url="https://api.groupme.com/v3/bots/post", bot_id=bot_
 
     r = requests.post(url, data=data)
 
-def read_messages(n, url=(base_url + "groups/38611088/messages?")):
+def read_messages(n, url=(base_url + "groups/"+ group_id +"/messages?")):
     """Returns a list of the last n messages details as (string, sender, time, message id)
     if request fails raise NotReached"""
 
@@ -43,9 +44,15 @@ def read_messages(n, url=(base_url + "groups/38611088/messages?")):
         %d" % json.loads(r.text)['meta']['code']
         raise NotReached(error_string)
 
-# def like(id, url=""):
-#     """Likes message by message id **unimplimented**"""
-#     pass
+def like(message_id, url=(base_url + "/messages/"),group_id=group_id):
+    """Likes message by message id Note: this is the user who will like the message and not the bot"""
+    url = url + str(group_id) + '/' + str(message_id) + '/like?' + token
+    r = requests.post(url)
+    
+def unlike(message_id, url=(base_url + "messages/"),group_id=group_id):
+    """unlikes message by message id Note this will be the user performing the action and not the bot"""
+    url = url + str(group_id) + '/' + str(message_id) + '/unlike?' + token
+    r = requests.post(url)    
 
 # def read_since(n, since, url=(base_url + "what ever the gm api says")):
 #     """read's n messages since the given time"""
